@@ -17,19 +17,24 @@ const sketch = () => {
 
     const x = 0;
     const y = 0;
-    const w = 300;
-    const h = 300;
+    const w = 100;
+    const h = 10;
 
-    context.save();
+    const num = 12;
 
-    context.translate(width / 2, height / 2);
-    context.rotate(degToRad(45));
+    for (let i = 0; i < num; i++) {
+      const slice = degToRad(360 / num);
+      const angle = slice * i;
 
-    context.beginPath();
-    context.rect( -w / 2, -h / 2, w, h);
-    context.fill();
+      context.save();
+      context.translate(width / 2, height / 2);
+      context.rotate(angle);
 
-    context.restore();
+      context.beginPath();
+      context.rect( -w / 2, -h / 2, w, h);
+      context.fill();
+      context.restore();
+    }
   };
 };
 
