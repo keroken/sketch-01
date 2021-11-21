@@ -15,20 +15,27 @@ const sketch = () => {
 
     context.fillStyle = 'black';
 
-    const x = 0;
-    const y = 0;
-    const w = 100;
-    const h = 10;
+    const cx = width / 2;
+    const cy = height / 2;
+
+    const w = 10;
+    const h = 100;
+
+    let x, y;
 
     const num = 12;
+    const radius = 300;
 
     for (let i = 0; i < num; i++) {
       const slice = degToRad(360 / num);
       const angle = slice * i;
 
+      x = cx + radius * Math.sin(angle);
+      y = cy + radius * Math.cos(angle);
+
       context.save();
-      context.translate(width / 2, height / 2);
-      context.rotate(angle);
+      context.translate(x, y);
+      context.rotate(-angle);
 
       context.beginPath();
       context.rect( -w / 2, -h / 2, w, h);
