@@ -19,7 +19,7 @@ const sketch = () => {
     context.save();
 
     context.translate(width / 2, height / 2);
-    context.rotate(0.3);
+    context.rotate(45 / 180 * Math.PI); // rotate 45 degrees
 
     context.beginPath();
     context.rect( -w / 2, -h / 2, w, h);
