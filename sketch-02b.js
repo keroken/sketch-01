@@ -21,7 +21,7 @@ const sketch = () => {
 
     let x, y;
 
-    const num = 12;
+    const num = 40;
     const radius = 300;
 
     for (let i = 0; i < num; i++) {
@@ -48,7 +48,7 @@ const sketch = () => {
       context.lineWidth = random.range(5, 20);
 
       context.beginPath();
-      context.arc(0, 0, radius * random.range(0.7, 1.3), slice * random.range(0, -0.5), slice * random.range(0, 0.5));
+      context.arc(0, 0, radius * random.range(0.7, 1.3), slice * random.range(1, -8), slice * random.range(1, 5));
       context.stroke();
       context.restore();
     }
