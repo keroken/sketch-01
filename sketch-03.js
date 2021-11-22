@@ -1,19 +1,27 @@
 const canvasSketch = require('canvas-sketch');
+const random = require('canvas-sketch-util/random');
 
 const settings = {
   dimensions: [ 1080,  1080]
 };
 
-const sketch = () => {
+const sketch = ({ context, width, height }) => {
+  const agents = [];
+
+  for (i = 0; i < 40; i++) {
+    const x = random.range(0, width);
+    const y = random.range(0, height);
+  
+    agents.push(new Agent(x, y));
+  }
+
   return ({ context, width, height }) => {
     context.fillStyle = 'white';
     context.fillRect(0, 0, width, height);
 
-    const agentA = new Agent(800, 400);
-    const agentB = new Agent(300, 700);
-
-    agentA.draw(context);
-    agentB.draw(context);
+    agents.forEach(agent => {
+      agent.draw(context);
+    });
   };
 };
 
