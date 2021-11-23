@@ -1,5 +1,6 @@
 const canvasSketch = require('canvas-sketch');
 const random = require('canvas-sketch-util/random');
+const math = require('canvas-sketch-util/math');
 
 const settings = {
   dimensions: [ 1080, 1080 ]
@@ -33,13 +34,17 @@ const sketch = () => {
       const n = random.noise2D(x, y, 0.001);
       const angle = n * Math.PI * 0.2;
 
+      // make values to be between 0 and 1
+      // const scale = (n + 1) / 2 * 30;
+      const scale = math.mapRange(n, -1, 1, 1, 30);
+
       context.save();
       context.translate(x, y);
       context.translate(marginX, marginY);
       context.translate(cellW * 0.5, cellH * 0.5);
       context.rotate(angle);
 
-      context.lineWidth = 4;
+      context.lineWidth = scale;
 
       context.beginPath();
       context.moveTo(w * -0.5, 0);
