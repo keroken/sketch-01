@@ -1,10 +1,18 @@
 const canvasSketch = require('canvas-sketch');
 const random = require('canvas-sketch-util/random');
 const math = require('canvas-sketch-util/math');
+const Tweakpane = require('tweakpane');
 
 const settings = {
   dimensions: [ 1080, 1080 ],
   animate: true
+};
+
+const params = {
+  cols: 10,
+  rows: 10,
+  scaleMin: 1,
+  scaleMax: 30,
 };
 
 const sketch = () => {
@@ -12,8 +20,8 @@ const sketch = () => {
     context.fillStyle = 'white';
     context.fillRect(0, 0, width, height);
 
-    const cols = 10;
-    const rows = 10;
+    const cols = params.cols;
+    const rows = params.rows;
     const numCells = cols * rows;
 
     const gridW = width * 0.8;
@@ -37,7 +45,7 @@ const sketch = () => {
 
       // make values to be between 0 and 1
       // const scale = (n + 1) / 2 * 30;
-      const scale = math.mapRange(n, -1, 1, 1, 30);
+      const scale = math.mapRange(n, -1, 1, params.scaleMin, params.scaleMax);
 
       context.save();
       context.translate(x, y);
@@ -56,5 +64,18 @@ const sketch = () => {
     }
   };
 };
+
+const createPane = () => {
+  const pane = new Tweakpane.Pane();
+  let folder;
+
+  folder = pane.addFolder({ title: 'Grid' });
+  folder.addInput(params, 'cols', { min: 2, max: 50, step: 1 });
+  folder.addInput(params, 'rows', { min: 2, max: 50, step: 1 });
+  folder.addInput(params, 'scaleMin', { min: 1, max: 100 });
+  folder.addInput(params, 'scaleMax', { min: 1, max: 100 });
+};
+
+createPane();
 
 canvasSketch(sketch, settings);
