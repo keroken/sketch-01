@@ -3,11 +3,12 @@ const random = require('canvas-sketch-util/random');
 const math = require('canvas-sketch-util/math');
 
 const settings = {
-  dimensions: [ 1080, 1080 ]
+  dimensions: [ 1080, 1080 ],
+  animate: true
 };
 
 const sketch = () => {
-  return ({ context, width, height }) => {
+  return ({ context, width, height, frame }) => {
     context.fillStyle = 'white';
     context.fillRect(0, 0, width, height);
 
@@ -31,7 +32,7 @@ const sketch = () => {
       const w = cellW * 0.8;
       const h = cellH * 0.8;
 
-      const n = random.noise2D(x, y, 0.001);
+      const n = random.noise2D(x + frame * 10, y, 0.001);
       const angle = n * Math.PI * 0.2;
 
       // make values to be between 0 and 1
