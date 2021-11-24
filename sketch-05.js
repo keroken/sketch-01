@@ -4,17 +4,20 @@ const settings = {
   dimensions: [ 1080, 1080 ]
 };
 
+let text = 'A';
+let fontSize = 1200;
+let fontFamily = 'serif';
+
 const sketch = () => {
   return ({ context, width, height }) => {
     context.fillStyle = 'white';
     context.fillRect(0, 0, width, height);
 
     context.fillStyle = 'black';
-    context.font = '1200px serif';
+    context.font = `${fontSize}px ${fontFamily}`;
     context.textBaseline = 'top'
     // context.textAlign = 'center';
 
-    const text = 'A';
     const metrics = context.measureText(text);
     // console.log(metrics);
     const mx = metrics.actualBoundingBoxLeft * -1;
