@@ -4,6 +4,8 @@ const settings = {
   dimensions: [ 1080, 1080 ]
 };
 
+let manager;
+
 let text = 'A';
 let fontSize = 1200;
 let fontFamily = 'serif';
@@ -46,7 +48,7 @@ const sketch = ({ context, width, height }) => {
     typeContext.rect(mx, my, mw, mh);
     typeContext.stroke();
 
-    typeContext.fillText('A', 0, 0);
+    typeContext.fillText(text, 0, 0);
     typeContext.restore();
 
     const typeData = typeContext.getImageData(0, 0, cols, rows).data;
@@ -84,4 +86,16 @@ const sketch = ({ context, width, height }) => {
   };
 };
 
-canvasSketch(sketch, settings);
+const onKeyUp = event => {
+  text = event.key.toUpperCase();
+  console.log(text);
+  manager.render();
+};
+
+document.addEventListener('keyup', onKeyUp);
+
+const start = async () => {
+  manager = await canvasSketch(sketch, settings);
+};
+
+start();
