@@ -74,7 +74,7 @@ class Agent {
   constructor(x, y) {
     this.pos = new Vector(x, y);
     this.vel = new Vector(random.range(-1, 1), random.range(-1, 1));
-    this.radius = random.range(4, 12);
+    this.radius = random.range(4, 20);
   }
 
   bounce(width, height) {
