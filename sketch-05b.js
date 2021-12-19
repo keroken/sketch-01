@@ -75,7 +75,7 @@ const sketch = ({ context, width, height }) => {
 
       context.font = `${cell * 2}px ${fontFamily}`;
 
-      context.fillStyle = `rgb(${r}, ${g}, ${b})`;
+      context.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`;
 
       context.save();
       context.translate(x, y);
