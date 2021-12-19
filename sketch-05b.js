@@ -91,7 +91,7 @@ const sketch = ({ context, width, height }) => {
 
     }
 
-    // context.drawImage(typeCanvas, 0, 0);
+    context.drawImage(typeCanvas, 0, 0);
 
   };
 };
